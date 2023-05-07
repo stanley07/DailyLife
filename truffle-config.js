@@ -1,15 +1,29 @@
+
+const Web3 = require('web3');
+
+
+const PRIVATE_KEY = process.env.PRIVATE_KEY;
+
+require("dotenv").config();
 module.exports = {
   networks: {
-    development: {
-      host: "127.0.0.1",
-      port: 7545,
-      network_id: "*" // Match any network id
-    }
+    mantle_testnet: {
+      network_id: "5001",
+      chainId: 5001,
+      port: 8545,
+      url: "https://rpc.testnet.mantle.xyz/",
+      accounts: [PRIVATE_KEY ?? "undefined"],
+    },
   },
-  solc: {
-    optimizer: {
-      enabled: true,
-      runs: 200
-    }
-  }
+  compilers: {
+    solc: {
+      version: "0.8.4",
+      settings: {
+        optimizer: {
+          enabled: true,
+          runs: 200
+        },
+      },
+    },
+  },
 }
